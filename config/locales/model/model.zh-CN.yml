@@ -8,8 +8,8 @@ zh-CN:
         one: "设备管理"
         other: "设备管理"   
       equipment_part: 
-        one: "设备库存管理"
-        other: "设备库存管理"
+        one: "详细库存管理"
+        other: "详细库存管理"
       distributor:
         one: "代理商管理"
         other: "代理商管理"       
@@ -33,7 +33,9 @@ zh-CN:
         amount: "数量"
         updated_at: "更新时间"
         created_at: "创建时间"
-        available_status: "库存情况"
+        available_status: "库存/总数量"
+        equipment_parts_status: "备件状态"
+        equipment_parts_sn_no: "备件序列号"
       equipment_part:
         sn_no: "序列号"
         status: "状态"                
