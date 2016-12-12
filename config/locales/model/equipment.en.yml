@@ -1,0 +1,12 @@
+en:
+  equipment:
+    category:
+      CMTS:   "CMTS"
+      AT: "AT"
+      CPE: "CPE"
+      WiFi: "Wi-Fi"
+      Router: "Router/Switch"
+      Server: "Server"
+      Test_Device: "Test-Device"
+      IPQAM: "IPQAM"
+      Other: "Other"

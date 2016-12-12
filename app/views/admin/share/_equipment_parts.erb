@@ -1,0 +1,7 @@
+<% if (f.object.equipment_parts.empty? || f.object.equipment_parts.last.persisted?)  %>
+  <% f.object.equipment_parts.build() %>
+<% end %>
+<%= f.inputs :name => :equipment_part, :for =>[:equipment_parts, f.object.equipment_parts] do |f_ep| %>
+  <%= f_ep.input :sn_no %>
+  <%= f_ep.input :status, :as => :select, :collection => i18n_equipment_part_status_collection_helper(EQUIPMENT_STATUS), :include_blank => false %>
+<% end %>   

@@ -1,0 +1,58 @@
+zh-CN:
+  activerecord:
+    models:
+      admin_user: 
+        one: "用户管理"
+        other: "用户管理"
+      equipment: 
+        one: "设备管理"
+        other: "设备管理"   
+      equipment_part: 
+        one: "设备库存管理"
+        other: "设备库存管理"
+      distributor:
+        one: "代理商管理"
+        other: "代理商管理"       
+    attributes:
+      admin_user:
+        email: "电子邮件"
+        password: "密码"
+        password_confirmation: "再次确认密码"
+        current_sign_in_at: "当前登录时间"
+        role:  "角色"
+        user_name: "用户名"
+        last_sign_in_at:  "最近一次登录时间"
+        sign_in_count:  "登录次数"
+        tlogin: 登录名
+        created_at: 创建时间
+      equipment:
+        desc: "设备描述"
+        bom_id: "BOM号"
+        category:  "设备种类"
+        model: "设备型号"
+        amount: "数量"
+        updated_at: "更新时间"
+        created_at: "创建时间"
+        available_status: "库存情况"
+      equipment_part:
+        sn_no: "序列号"
+        status: "状态"                
+        updated_at: "更新时间"
+        created_at: "创建时间"  
+      distributor:
+        name: "简称"
+        status: "状态"
+        comment: "说明"
+        company_name: "公司全称"
+      company_profile:
+        company_name: "公司全称"
+        company_addr: "公司地址"
+        company_desc: "公司描述"
+        postcode: "邮编"
+        contact: "联系人"
+        primary_phone: "主要联系电话"
+        secondary_phone: "次要联系电话"
+        distribution_list: "邮件分发列表"
+
+
+

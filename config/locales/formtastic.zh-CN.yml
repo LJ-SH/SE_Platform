@@ -1,0 +1,14 @@
+"zh-CN":
+  formtastic:
+    actions:
+      create: "新建%{model}"
+      update: "更新%{model}"
+      submit: '提交%{model}'
+      cancel: '取消'
+      reset: '复位%{model}'
+      required: '必选'
+    titles:
+      admin_user: 
+        admin_user_details: 用户详细信息  
+      equipment_parts: "库存信息"
+      company_profile_details: "公司概览"            

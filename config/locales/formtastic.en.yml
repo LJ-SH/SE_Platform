@@ -1,0 +1,6 @@
+en:
+  formtastic:
+    titles:
+      admin_user: 
+        admin_details: Admin Details
+      equipment_parts: "SKU_Info"        

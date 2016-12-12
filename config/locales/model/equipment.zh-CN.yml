@@ -1,0 +1,12 @@
+zh-CN:
+  equipment:
+    category:
+      CMTS:   "CMTS"
+      AT: "AT"
+      CPE: "终端设备"
+      WiFi: "Wi-Fi"
+      Router: "路由器/交换机"
+      Server: "服务器"
+      Test_Device: "测试设备"
+      IPQAM: "IPQAM"
+      Other: "其他"

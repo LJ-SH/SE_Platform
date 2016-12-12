@@ -1,0 +1,49 @@
+en:
+  activerecord:
+    models:
+      admin_user: 
+        one: "User Management"
+        other: "User Management"
+      equipment: 
+        one: "Equipment Mgmt"
+        other: "Equipment Mgmt"
+      distributor:
+        one: "Distributor Mgmt"
+        other: "Distributor Mgmt"        
+    attributes:
+      admin_user:
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password Confirmation"
+        current_sign_in_at: "Current Sign-in At"
+        role:  "Role"
+        user_name: "User Name"
+        last_sign_in_at:  "Latest Sign-in At"
+        sign_in_count:  "Sign-in Count"
+        tlogin: "Login Name"
+        created_at: "Created At"
+      equipment:
+        desc: "Description"
+        bom_id: "BOM#"
+        category:  "Category"
+        model: "Model"
+        updated_at: "Updated_at"
+        created_at: "Created_at"
+        available_status: "SKU-Status"        
+      equipment_part:
+        sn_no: "SN#"
+        status: "Status"
+      distributor:
+        name: "Short_name"
+        status: "Status"
+        comment: "comment"
+        company_name: "Full_name"
+      company_profile:
+        company_name: "Full_name"
+        company_addr: "Address"
+        company_desc: "Description"
+        postcode: "Postcode"
+        contact: "Contact"
+        primary_phone: "Primary_phone"
+        secondary_phone: "Secondary_Phone"
+        distribution_list: "Email_distribution_list"        

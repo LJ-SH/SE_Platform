@@ -20,4 +20,19 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  site_title: "SE Working Platform"
+  menu_system_setting: "Settings"  
+  locale:
+    setting: "LAUGUAGE: "  
+    en: "ENGLISH"
+    zh-CN: "CHINESE"
+  active_admin:
+    devise:
+      login:
+        placeholder:
+          login_hint: Please input the login name
+          password_hint: Please input the password 
+    actions:
+      manage_parts: "SKU Mgmt"
+    sidebars:
+      parent_equipment_info: "Equipment Info"          

@@ -1,0 +1,13 @@
+"zh-CN":
+  admin_user:
+    role:      
+      admin:   "管理员"
+      pre_sale: "售前"
+      sales: "销售"
+      post_sale: "售后"
+      inside_sale: "内部销售"
+      other: "其他"
+  errors:
+    messages:
+      destroy_fails_if_current_admin_user: 当前用户不能删除自己
+      destroy_fails_if_last_admin: 最后一个系统超级管理员不能被删除

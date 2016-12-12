@@ -1,0 +1,7 @@
+zh-CN:
+  company_profile:
+    status:
+      Active: "有效"
+      Inactive: "过期"
+      Pending_decommision: "即将过期"
+      Other: "其他"

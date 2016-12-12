@@ -1,0 +1,13 @@
+en:
+  admin_user:
+    role:
+      admin:   "ADMIN"
+      pre_sale: "PRE-SALE"
+      sales: "SALES"
+      post_sale: "POST-SALE"
+      inside_sale: "INSIDE-SALE"
+      other: "OTHER"
+  errors:
+    messages:
+      destroy_fails_if_current_admin_user: "User is not allowed to delete itself"
+      destroy_fails_if_last_admin: "System needs to have at least one super-admin"

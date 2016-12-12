@@ -1,0 +1,10 @@
+zh-CN:
+  equipment_part:
+    status:
+      In_lab:   "实验室"
+      Borrowed: "借出"
+      Under_repair: "送修中"
+      Scrapped: "报废"
+      Other: "其他"
+    errors:
+      exceed_maximum_amount: "超出设备最大数量，请检查设备数量"

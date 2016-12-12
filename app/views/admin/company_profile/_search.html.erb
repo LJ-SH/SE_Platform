@@ -1,0 +1,9 @@
+<%= search_form_for @q do |f| %>
+  <%= f.label :name %>
+  <%= f.search_field :name %>
+
+  <%= f.label :company_addr %>
+  <%= f.search_field :company_addr %>
+
+  <%= f.submit "search" %>
+<% end %> 

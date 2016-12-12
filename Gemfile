@@ -51,11 +51,9 @@ gem 'activeadmin', github: 'activeadmin'
 # Plus integrations with:
 gem 'devise'
 gem 'cancan' # or cancancan
-gem 'mysql2'
-
 gem 'draper'
 gem 'pundit'
-
+gem 'mysql2'
 
 gem 'simple_form'
 

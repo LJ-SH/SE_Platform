@@ -19,5 +19,10 @@ module SePlatform
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.before_configuration do
+      I18n.load_path = Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+      I18n.default_locale = "zh-CN".to_sym
+      I18n.reload!
+    end    
   end
 end

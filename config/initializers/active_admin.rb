@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Se Platform"
+  config.site_title = proc{I18n.t('site_title')}
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -77,7 +77,7 @@ ActiveAdmin.setup do |config|
   # because, by default, user gets redirected to Dashboard. If user
   # doesn't have access to Dashboard, he'll end up in a redirect loop.
   # Method provided here should be defined in application_controller.rb.
-  # config.on_unauthorized_access = :access_denied
+  config.on_unauthorized_access = :access_denied
 
   # == Current User
   #
@@ -129,7 +129,7 @@ ActiveAdmin.setup do |config|
   # config.comments_order = 'created_at ASC'
   #
   # You can disable the menu item for the comments index page:
-  # config.comments_menu = false
+  config.comments_menu = false
   #
   # You can customize the comment menu:
   # config.comments_menu = { parent: 'Admin', priority: 1 }
@@ -222,6 +222,11 @@ ActiveAdmin.setup do |config|
   #       menu.add label: "My Great Website", url: "http://www.mygreatwebsite.com", html_options: { target: :blank }
   #     end
   #   end
+      config.namespace :admin do |admin|
+        admin.build_menu :default do |menu|
+          menu.add id: 'main_menu_setting', label: proc{I18n.t("menu_system_setting")}, priority: 10
+        end
+      end
 
   # == Download Links
   #
@@ -269,4 +274,5 @@ ActiveAdmin.setup do |config|
   # of those filters by default here.
   #
   # config.include_default_association_filters = true
+  config.authorization_adapter = ActiveAdmin::CanCanAdapter
 end
