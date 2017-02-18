@@ -8,7 +8,10 @@
       reset: '复位%{model}'
       required: '必选'
     titles:
-      admin_user: 
-        admin_user_details: 用户详细信息  
+      admin_user_details: 用户详细信息  
       equipment_parts: "库存信息"
-      company_profile_details: "公司概览"         
+      company_profile_details: "公司概览" 
+    placeholders:
+      equipment_part:
+        sn_no: "以SN字母开头"
+      

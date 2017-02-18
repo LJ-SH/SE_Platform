@@ -6,5 +6,6 @@ zh-CN:
       Under_repair: "送修中"
       Scrapped: "报废"
       Other: "其他"
-    errors:
-      exceed_maximum_amount: "超出设备最大数量，请检查设备数量"
+  errors:
+    messages:
+      equipment_part_sn_no_invalid: "序列号需要以SN-开头"

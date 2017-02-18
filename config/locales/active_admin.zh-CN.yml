@@ -31,6 +31,8 @@
         ends_with: "结尾"
         greater_than: "大于"
         less_than: "小于"
+        gteq_date: "日期晚于"
+        lteq_date: "日期早于"
     status_tag:
       "yes": "是的"
       "no": "无"

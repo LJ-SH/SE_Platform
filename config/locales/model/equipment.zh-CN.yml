@@ -10,5 +10,6 @@ zh-CN:
       Test_Device: "测试设备"
       IPQAM: "IPQAM"
       Other: "其他"
-    errors:
+  errors:
+    messages:
       exceed_maximum_amount: "库存部件数量超过设备总数量，请先检查更新设备总数量"      

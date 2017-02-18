@@ -9,11 +9,11 @@ ActiveAdmin.register Equipment do
 # permit_params do
 #   permitted = [:permitted, :attributes]
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
+#   permitted 
 # end
   config.batch_actions = false
   config.comments = true
-  menu :priority => 9
+  menu :priority => 8
   permit_params :category,:model,:desc,:bom_id,:amount, :equipment_parts_attributes => [:_destroy, :id,:sn_no, :status]
 
   index do
@@ -52,11 +52,11 @@ ActiveAdmin.register Equipment do
       f.input :desc
       f.input :amount
       f.input :bom_id
-      f.input :pending_delete_part_num, :as => :hidden
+      #f.input :pending_delete_part_num, :as => :hidden
     end
     f.inputs do
       f.has_many :equipment_parts do |t|
-        t.input :sn_no
+        t.input :sn_no, :placeholder => I18n.t('formtastic.placeholders.equipment_part.sn_no')
         t.input :status, :as => :select, :include_blank => false,
                 :collection => i18n_equipment_part_status_collection_helper(EQUIPMENT_STATUS)
         t.input :_destroy, :as => :boolean, :required => false, :label => 'Remove' unless t.object.new_record?
@@ -78,6 +78,7 @@ ActiveAdmin.register Equipment do
         end
       end
     end
+    active_admin_comments
   end
 
   controller do
@@ -85,25 +86,6 @@ ActiveAdmin.register Equipment do
      @search = chain.ransack clean_search_params
      @search.result(distinct: true)
     end
-
-    append_before_filter :only => [:create, :update] do
-      unless params[:equipment][:equipment_parts_attributes].nil?
-        destroy_ep = params[:equipment][:equipment_parts_attributes].select{|k,v| v["_destroy"] == "1"}
-        params[:equipment][:pending_delete_part_num] = destroy_ep.size
-      end
-    end
-    #append_before_filter :only => [:update, :create] do
-    #  if params[:equipment][:equipment_parts_attributes].nil?
-    #    part_num = 0
-    #  else
-    #    part_num = params[:equipment][:equipment_parts_attributes].size
-    #  end
-    #  if part_num > params[:equipment][:amount].to_i
-    #      flash[:error] = t('equipment.errors.exceed_maximum_amount')
-    #      redirect_to(:back)
-    #      return
-    #  end 
-    #end    
   end
 end
 

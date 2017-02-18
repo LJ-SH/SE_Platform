@@ -46,10 +46,10 @@ ActiveAdmin.register Distributor do
 	  f.input :comment 
 	end 
 	  
-	f.inputs :company_profile_details, :for => [:company_profile, f.object.company_profile || CompanyProfile.new] do |t|	
-	  	t.inputs :company_name,:company_addr, :postcode, :company_desc, :contact, :primary_phone, :secondary_phone,
-                 :distribution_list
-	end
+  	f.inputs :company_profile_details, :for => [:company_profile, f.object.company_profile || CompanyProfile.new] do |t|	
+  	  	t.inputs :company_name,:company_addr, :postcode, :company_desc, :contact, :primary_phone, :secondary_phone,
+                   :distribution_list
+  	end
   	f.actions
   end
 

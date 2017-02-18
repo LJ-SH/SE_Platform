@@ -1,0 +1,11 @@
+"zh-CN":
+  iou:
+    status:      
+      Active:   "借用中"
+      In_shipping: "寄送途中"
+      Closed: "关闭"
+      In_application: "申请中"
+      Other: "其他"
+  errors:
+    messages:
+      destroy_fails_if_any_active_iou: 还有借用设备没有归还

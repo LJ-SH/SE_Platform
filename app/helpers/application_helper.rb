@@ -14,4 +14,7 @@ module ApplicationHelper
   def i18n_company_status_collection_helper(company_status_collection)
   	company_status_collection.map{|r| [I18n.t("company_profile.status.#{r}"),r]}
   end
+  def i18n_iou_status_collection_helper(iou_status_collection)
+    iou_status_collection.map{|r| [I18n.t("iou.status.#{r}"),r]}  
+  end
 end

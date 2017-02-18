@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.2'
 #gem 'rails', '3.2.13'
 
 # Use sqlite3 as the database for Active Record
@@ -53,11 +53,19 @@ gem 'devise'
 gem 'cancan' # or cancancan
 gem 'draper'
 gem 'pundit'
-gem 'mysql2'
+
+gem 'mysql2', '0.3.20'	
+
+gem 'carrierwave'
 
 gem 'simple_form'
 
 gem 'kaminari'
+
+# use part of Select2 to enhance select box functionalities
+gem 'activeadmin_addons'
+
+gem 'rails-jquery-autocomplete'
 
 #gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4"
 gem "ransack"

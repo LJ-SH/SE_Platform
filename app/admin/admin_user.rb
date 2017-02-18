@@ -1,8 +1,8 @@
 ActiveAdmin.register AdminUser do
   config.batch_actions = false
-  actions :all, :except => :show
+  actions :all
   permit_params :email, :user_name, :role, :password, :password_confirmation
-  config.comments = false
+  config.comments = true
   menu parent: 'main_menu_setting'
 
   index do
@@ -28,7 +28,8 @@ ActiveAdmin.register AdminUser do
 
   form do |f|
     #f.semantic_errors *f.object.errors.keys
-    f.inputs I18n.t('formtastic.titles.admin_user.admin_user_details') do
+    #f.inputs I18n.t('formtastic.titles.admin_user_details') do
+    f.inputs do
       f.input :user_name
 
       if current_admin_user.admin?
@@ -45,6 +46,14 @@ ActiveAdmin.register AdminUser do
     end
     f.actions
   end  
+
+  show do |admin_user|
+    attributes_table do
+      rows :id, :email, :user_name, :role, :sign_in_count, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip
+    end
+
+    active_admin_comments
+  end
 
   controller do
     def destroy

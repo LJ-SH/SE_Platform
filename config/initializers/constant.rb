@@ -2,3 +2,5 @@ ROLE_DEFINITION = ["admin", "pre_sale", "sales", "post_sale", "inside_sale", "ot
 PRODUCT_CATEGORY = ["CMTS", "AT", "CPE", "WiFi", "Router","Server","Test_Device","IPQAM", "Other"]
 EQUIPMENT_STATUS = ["In_lab","Borrowed","Under_repair","Scrapped","Other"]
 COMPANY_STATUS = ["Active", "Inactive", "Pending_decommision", "Other"]
+IOU_STATUS = ["Active", "In_application", "In_shipping", "Closed", "Other"]
+IOU_STATUS_ACTIVE = IOU_STATUS[0]

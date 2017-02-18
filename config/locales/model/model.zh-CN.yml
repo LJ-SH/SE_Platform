@@ -8,11 +8,14 @@ zh-CN:
         one: "设备管理"
         other: "设备管理"   
       equipment_part: 
-        one: "详细库存管理"
-        other: "详细库存管理"
+        one: "具体元件信息"
+        other: "具体元件信息"
       distributor:
         one: "代理商管理"
-        other: "代理商管理"       
+        other: "代理商管理" 
+      iou:
+        one: "设备借用记录"
+        other: "设备借用记录"            
     attributes:
       admin_user:
         email: "电子邮件"
@@ -33,10 +36,11 @@ zh-CN:
         amount: "数量"
         updated_at: "更新时间"
         created_at: "创建时间"
-        available_status: "库存/总数量"
+        available_status: "可借数量/总数量"
         equipment_parts_status: "备件状态"
         equipment_parts_sn_no: "备件序列号"
       equipment_part:
+        equipment_id: "设备型号"
         sn_no: "序列号"
         status: "状态"                
         updated_at: "更新时间"
@@ -55,6 +59,18 @@ zh-CN:
         primary_phone: "主要联系电话"
         secondary_phone: "次要联系电话"
         distribution_list: "邮件分发列表"
+      iou:
+        distributor_id: "借用单位"
+        sales_name: "公司相关销售"
+        start_time_of_loan: "借用时间"
+        expected_end_time_of_loan: "预计规划时间"
+        status: "借用状态"
+        contact_of_loaner: "借用单位联系人"
+        phone_of_loaner: "借用单位联系人电话"
+        approver: "公司审核人"
+        appendix: "借条附件"
+        contact: "借用联系人"
+        remove_appendix: "删除附件"
 
 
 
