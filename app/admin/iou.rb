@@ -61,8 +61,9 @@ ActiveAdmin.register Iou do
   	  	  p.input :sn_no, as: :nested_select,
   	  	          level_1: {attribute: :equipment_id, url: admin_equipment_index_path, 
   	  	             	    fields: [:category, :model], display_name: 'model'}, 
-  	  	          level_2: {attribute: :id, url: admin_equipment_parts_path, 
-  	  	                    fields: [:sn_no], display_name: 'sn_no', minimum_input_length: 3}
+  	  	          level_2: {attribute: :id, url: admin_equipment_equipment_parts_path(1), 
+  	  	                    fields: [:sn_no], display_name: "sn_no", minimum_input_length: 3}
+                  #level_3: {attribute: :status}
   	  	else
   	  	  p.input :equipment_id, as: :select, :collection => [p.object.equipment].map{|x| [x.model,x.id]},
   	  	          :input_html => {:disabled => true}
@@ -103,10 +104,12 @@ ActiveAdmin.register Iou do
     active_admin_comments
   end
 
-  filter :distributor_id, :as => :select, :collection => Distributor.all.map{|r| [r.name, r.id]}
+  #filter :distributor_id, :as => :select, :collection => Distributor.all.map{|r| [r.name, r.id]}
+  filter :distributor_id, :as => :select, :collection => Distributor.all.reject{|r| r.ious.empty?}.map{|r| [r.name, r.id]}
   filter :status, :as => :select, :collection => IOU_STATUS.map{|r| [I18n.t("iou.status.#{r}"),r]}
   filter :sales_name
   filter :start_time_of_loan
+
 
   controller do
     append_before_filter :only => [:update] do

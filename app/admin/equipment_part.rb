@@ -14,9 +14,11 @@ ActiveAdmin.register EquipmentPart do
 # end
   config.batch_actions = false
   config.comments = false
+  belongs_to :equipment      
   #actions :all, :except => :show
   actions :index
-  menu false 
+  menu false
+
 
   #permit_params :sn_no, :equipment_id, :iou_id
 end

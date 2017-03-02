@@ -30,7 +30,7 @@ class Equipment < ActiveRecord::Base
     unless self.equipment_parts.nil?
       num = self.equipment_parts.select{|p| p.status == EQUIPMENT_STATUS[0]}.size
     end  
-  	"#{num} / #{self.amount}"
+  	"#{num} / #{self.equipment_parts.size}"
   end
 
   def prevent_if_exceed_maximum_amount

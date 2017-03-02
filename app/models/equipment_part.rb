@@ -6,4 +6,10 @@ class EquipmentPart < ActiveRecord::Base
   belongs_to :equipment, :inverse_of => :equipment_parts
   belongs_to :iou, :inverse_of => :equipment_parts
 
+  attr_accessor :sn_no_status_comb
+
+  def sn_on_status_comb
+  	"#{self.sn_no}"+I18n.t("iou.status.#{self.status}")
+  end
+
 end
