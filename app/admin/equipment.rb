@@ -82,6 +82,23 @@ ActiveAdmin.register Equipment do
   end
 
   controller do
+    before_filter :filter_duplicate_equipment_part, :only => [:create, :update]
+
+    def filter_duplicate_equipment_part
+      unless permitted_params[:equipment][:equipment_parts_attributes].nil?
+        attributes = permitted_params[:equipment][:equipment_parts_attributes]
+        attr_values = attributes.values().uniq
+        logger.info attributes
+        unless attr_values.length == attributes.length # if duplicate items
+          c = []
+          attr_values.each_with_index do |v,i|
+            c << i.to_s << v
+          end
+          params[:equipment][:equipment_parts_attributes] = Hash[*c]
+        end 
+      end
+    end
+
     def apply_filtering(chain)
      @search = chain.ransack clean_search_params
      @search.result(distinct: true)

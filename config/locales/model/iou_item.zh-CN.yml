@@ -1,0 +1,4 @@
+"zh-CN":
+  errors:
+    messages:
+      iou_item_duplicate: 该借用设备重复

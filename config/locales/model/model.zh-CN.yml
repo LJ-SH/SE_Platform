@@ -15,7 +15,10 @@ zh-CN:
         other: "代理商管理" 
       iou:
         one: "设备借用记录"
-        other: "设备借用记录"            
+        other: "设备借用记录" 
+      iou_item:
+        one: "设备借用项目"
+        other: "设备借用项目"                   
     attributes:
       admin_user:
         email: "电子邮件"
@@ -71,6 +74,10 @@ zh-CN:
         appendix: "借条附件"
         contact: "借用联系人"
         remove_appendix: "删除附件"
+      iou_item:
+        iou_id: "借条编号"
+        equipment_id: "借用设备"
+        equipment_part_id: "设备序列号 (最新状态)"        
 
 
 

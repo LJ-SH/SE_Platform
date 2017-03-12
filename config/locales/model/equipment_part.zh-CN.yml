@@ -6,6 +6,8 @@ zh-CN:
       Under_repair: "送修中"
       Scrapped: "报废"
       Other: "其他"
+      Reserved: "已预订"
   errors:
     messages:
       equipment_part_sn_no_invalid: "序列号需要以SN-开头"
+

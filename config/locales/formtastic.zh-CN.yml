@@ -10,8 +10,10 @@
     titles:
       admin_user_details: 用户详细信息  
       equipment_parts: "库存信息"
+      iou_items: "借用项目清单"
       company_profile_details: "公司概览" 
     placeholders:
+      phone_format: "1开头的11位手机号，或者0xx(x)-xxxxxxx(x)-xxx的座机号"
+      time_format: "xxxx(年)-xx(月)-xx(日)"
       equipment_part:
         sn_no: "以SN字母开头"
-      

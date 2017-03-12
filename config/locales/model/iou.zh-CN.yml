@@ -1,11 +1,19 @@
 "zh-CN":
   iou:
-    status:      
-      Active:   "借用中"
-      In_shipping: "寄送途中"
-      Closed: "关闭"
-      In_application: "申请中"
+    status:  
+      Drafted: "借用申请准备中"        
+      Submitted: "申请提交待批准"      
+      Active:   "借用申请已生效"
+      Closed: "借用结束"
+      Rejected: "借用申请被拒"
       Other: "其他"
   errors:
     messages:
-      destroy_fails_if_any_active_iou: 还有借用设备没有归还
+      iou_equipment_parts_missing: 缺少借用设备信息
+      iou_appendix_missing: 缺少借条附件
+      iou_equipment_part_not_avail: "设备%{model} (序列号: %{sn_no}) 暂时不可用"
+      empty_approver: 借用申请生效必须填写批准人信息
+      #destroy_fails_if_active: "%{distributor}借用申请生效中，不允许删除"
+      destroy_fails_if_active: "有效借用申请记录不允许删除"
+      iou_equipment_part_not_available: "%{sn}设备目前不可用" 
+      iou_equipment_part_wrong_state: "%{sn}设备状态不对"      

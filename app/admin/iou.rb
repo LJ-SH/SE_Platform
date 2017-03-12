@@ -17,7 +17,7 @@ ActiveAdmin.register Iou do
   menu :priority => 8
   permit_params :distributor_id,:sales_name,:start_time_of_loan,:expected_end_time_of_loan,
                 :status, :contact_of_loaner, :phone_of_loaner, :approver, :appendix, :remove_appendix,
-                :equipment_parts_attributes => [:iou_id, :status, :sn_no, :equipment_id, :id]
+                :iou_items_attributes => [:id,:iou_id, :equipment_id, :equipment_part_id, :_destroy]
 
   index do
     selectable_column
@@ -32,48 +32,6 @@ ActiveAdmin.register Iou do
     	iou.appendix.nil?? "":link_to("#{iou.appendix_name}","#{iou.appendix.url}")
     end
     actions 
-  end
-
-  #form partial: 'form'
-
-  form do |f|
-    #f.semantic_errors *f.object.errors.keys
-    f.inputs do 
-      f.input :distributor_id, :as => :select, :collection => Distributor.all
-      f.input :status, :as => :select, :collection => i18n_iou_status_collection_helper(IOU_STATUS), :include_blank => false
-      f.input :sales_name
-      f.input :start_time_of_loan
-      f.input :expected_end_time_of_loan
-      f.input :contact_of_loaner
-      f.input :phone_of_loaner
-      f.input :approver
-      li do
-        f.label :appendix
-        f.text_node "#{f.object.appendix_name}"
-        f.file_field :appendix
-      end
-      f.input :remove_appendix, :as => :boolean if f.object.appendix?
-    end
-
-  	f.inputs do
-  	  f.has_many :equipment_parts do |p|
-  	  	if p.object.new_record?
-  	  	  p.input :sn_no, as: :nested_select,
-  	  	          level_1: {attribute: :equipment_id, url: admin_equipment_index_path, 
-  	  	             	    fields: [:category, :model], display_name: 'model'}, 
-  	  	          level_2: {attribute: :id, url: admin_equipment_equipment_parts_path(1), 
-  	  	                    fields: [:sn_no], display_name: "sn_no", minimum_input_length: 3}
-                  #level_3: {attribute: :status}
-  	  	else
-  	  	  p.input :equipment_id, as: :select, :collection => [p.object.equipment].map{|x| [x.model,x.id]},
-  	  	          :input_html => {:disabled => true}
-  	  	  p.input :sn_no, :as => :string, :input_html => {:disabled => true}
-          p.input :_destroy, :as => :boolean, :required => false, :label => 'Remove'
-  	  	end
-  	  end
-  	end
-
-    f.actions	
   end
 
   show do |iou|
@@ -91,17 +49,75 @@ ActiveAdmin.register Iou do
       end
     end
 
-    panel t 'formtastic.titles.equipment_parts' do 
-      table_for iou.equipment_parts, i18n: EquipmentPart do
-      	column :equipment_id
-        column :sn_no
-        column :status do |e_p|
-          I18n.t("equipment_part.status.#{e_p.status}")
+    panel t 'formtastic.titles.iou_items' do 
+      table_for iou.iou_items, i18n: IouItem do
+        column :equipment_id do |item|
+          item.associated_equipment_name
+        end
+        column :equipment_part_id do |item|
+          item.associated_equipment_part_sn
         end
       end
     end
 
     active_admin_comments
+  end
+
+  #form partial: 'form'
+  form do |f|
+    f.semantic_errors :base
+
+    f.inputs do 
+      f.input :distributor_id, :as => :select, :collection => Distributor.all, 
+              :input_html => {:disabled => f.object.not_draft?}
+      f.input :sales_name, :input_html => {:disabled => f.object.not_draft?}
+      f.input :contact_of_loaner, :input_html => {:disabled => f.object.not_draft?}
+      f.input :phone_of_loaner, :placeholder => I18n.t("formtastic.placeholders.phone_format"),
+              :input_html => {:disabled => f.object.not_draft?}
+      li do
+        f.label :appendix
+        f.text_node link_to("#{iou.appendix_name}","#{iou.appendix.url}")
+        f.file_field :appendix unless f.object.not_draft?
+      end
+      f.input :remove_appendix, :as => :boolean if (f.object.appendix? and !f.object.not_draft?)
+    end
+
+    if f.object.not_draft?
+      panel t 'formtastic.titles.iou_items' do 
+        table_for iou.iou_items, i18n: IouItem do
+          column :equipment_id do |item|
+            item.associated_equipment_name
+          end
+          column :equipment_part_id do |item|
+            item.associated_equipment_part_sn
+          end
+        end
+      end
+    else 
+      f.inputs :name => I18n.t('formtastic.titles.iou_items') do
+        f.has_many :iou_items do |item|
+          item.input :equipment_part_id, as: :nested_select,
+                  level_1: {attribute: :equipment_id, url: admin_equipment_index_path, 
+                          fields: [:category, :model], display_name: 'model', :input_html => {:disabled => ''}}, 
+                  level_2: {attribute: :equipment_part_id, url: iou_equipment_part_sel_ready_for_rsrv_collection_path, 
+                            fields: [:sn_no], display_name: "sn_status_comb", minimum_input_length: 3}
+          item.input :_destroy, :as => :boolean, :required => false, :label => 'Remove'
+        end
+      end
+    end      
+
+    f.inputs do
+      f.input :start_time_of_loan, :placeholder => I18n.t("formtastic.placeholders.time_format"),
+              :input_html => {:disabled => f.object.after_active?}
+      f.input :expected_end_time_of_loan, 
+              :placeholder => I18n.t("formtastic.placeholders.time_format"),
+              :input_html => {:disabled => f.object.close_state?}
+      f.input :status, :as => :select, :include_blank => false,
+              :collection => i18n_iou_status_collection_helper(f.object.status_sel_collection)
+      f.input :approver, :input_html => {:disabled => f.object.after_active?}      
+    end
+
+    f.actions 
   end
 
   #filter :distributor_id, :as => :select, :collection => Distributor.all.map{|r| [r.name, r.id]}
@@ -110,17 +126,44 @@ ActiveAdmin.register Iou do
   filter :sales_name
   filter :start_time_of_loan
 
-
   controller do
-    append_before_filter :only => [:update] do
-      unless params[:iou][:equipment_parts_attributes].nil?
-        params[:iou][:equipment_parts_attributes].each_value do |v|
-          if v["_destroy"] == "1"
-          	v.merge!({"iou_id" => "", "_destroy" => "0	"})
-          end
-      	end
-      end
-    end
-  end
+    before_filter :filter_duplicate_iou_item, :only => [:create, :update]
 
+    def destroy
+      @iou = Iou.find(permitted_params[:id])
+      destroy!  
+      if @iou.errors[:base].any?
+        flash[:error] ||= []
+        flash[:error].concat(@iou.errors[:base])
+      end          
+    end  
+
+    def filter_duplicate_iou_item
+      unless permitted_params[:iou][:iou_items_attributes].nil?
+        attributes = permitted_params[:iou][:iou_items_attributes]
+        attr_values = attributes.values().uniq
+        logger.info attributes
+        unless attr_values.length == attributes.length # if duplicate items
+          c = []
+          attr_values.each_with_index do |v,i|
+            c << i.to_s << v
+          end
+          params[:iou][:iou_items_attributes] = Hash[*c]
+        end 
+      end
+    end  
+  end
 end
+
+
+    #f.inputs :name => :iou_items do
+    #  f.semantic_fields_for :iou_items do |item|
+    #      item.input :equipment_id, :as => :select, :include_blank => false,
+    #                 :collection => {item.object.associated_equipment_name => item.object.equipment_id}, 
+    #                 :input_html => {:disabled => true}
+    #      item.input :equipment_part_id, :as => :select, :include_blank => false,
+    #                 :collection => {item.object.associated_equipment_part_sn => item.object.equipment_part_id},
+    #                 :input_html => {:disabled => true} 
+    #      #item.input :_destroy, :as => :boolean, :required => false, :label => 'Remove'
+    #  end
+    #end
