@@ -11,3 +11,5 @@ en:
     messages:
       destroy_fails_if_current_admin_user: "User is not allowed to delete itself"
       destroy_fails_if_last_admin: "System needs to have at least one super-admin"
+      destroy_fails_if_any_doc_item: "Document still has some individual appendix"
+      

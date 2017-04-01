@@ -11,3 +11,4 @@
     messages:
       destroy_fails_if_current_admin_user: 当前用户不能删除自己
       destroy_fails_if_last_admin: 最后一个系统超级管理员不能被删除
+      destroy_fails_if_any_doc_item: 该文档下面还有一些未删除文件 

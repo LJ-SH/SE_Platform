@@ -57,7 +57,7 @@ ActiveAdmin.register AdminUser do
 
   controller do
     def destroy
-      @admin_user = AdminUser.find(params[:id])
+      @admin_user = AdminUser.find(permitted_params[:id])
       if @admin_user.is_current_admin_user?(current_admin_user)
         flash[:error] = t('errors.messages.destroy_fails_if_current_admin_user')
         redirect_to :action => :index

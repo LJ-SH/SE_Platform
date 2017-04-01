@@ -1,0 +1,12 @@
+"zh-CN":
+  document:
+    type:  
+      RFP: "应标文件"        
+      Training_Material: "培训资料"      
+      Solution_Reference:   "参考方案"
+      Certificate: "认证证书"
+      Corporate_Doc: "公司相关文件"
+      Industry_Report: "行业报告"
+      Event_Presentation: "会议演讲"
+      Sales_Record: "业绩说明"
+      Other: "其他"  

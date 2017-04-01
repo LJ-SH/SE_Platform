@@ -18,7 +18,13 @@ zh-CN:
         other: "设备借用记录" 
       iou_item:
         one: "设备借用项目"
-        other: "设备借用项目"                   
+        other: "设备借用项目"  
+      document:
+        one: "文档管理"
+        other: "文档管理"   
+      doc_item:
+        one: "附件"
+        other: "附件"                      
     attributes:
       admin_user:
         email: "电子邮件"
@@ -77,7 +83,20 @@ zh-CN:
       iou_item:
         iou_id: "借条编号"
         equipment_id: "借用设备"
-        equipment_part_id: "设备序列号 (最新状态)"        
+        equipment_part_id: "设备序列号 (最新状态)"  
+      document:
+        name: 文档名称
+        updated_by: 文档提供者
+        comment: 文档说明
+        doc_type: 文档类型
+        associated_solution: 相关产品
+        associated_account: 相关客户
+        updated_at: "更新时间"
+        created_at: "创建时间"  
+        appendix: 附件      
+      doc_item:
+        name: 附件名称
+        appendix: 附件      
 
 
 

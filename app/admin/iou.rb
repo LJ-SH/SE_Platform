@@ -19,50 +19,6 @@ ActiveAdmin.register Iou do
                 :status, :contact_of_loaner, :phone_of_loaner, :approver, :appendix, :remove_appendix,
                 :iou_items_attributes => [:id,:iou_id, :equipment_id, :equipment_part_id, :_destroy]
 
-  index do
-    selectable_column
-    #id_column
-    column :distributor_id
-    column :start_time_of_loan
-    column :status do |iou|
-      I18n.t("iou.status.#{iou.status}")
-    end
-    column :contact
-    column :appendix do |iou|
-    	iou.appendix.nil?? "":link_to("#{iou.appendix_name}","#{iou.appendix.url}")
-    end
-    actions 
-  end
-
-  show do |iou|
-    attributes_table do
-      row  :distributor_id
-      row  :status do 
-      	I18n.t("iou.status.#{iou.status}")
-      end
-      rows :sales_name,:start_time_of_loan,:expected_end_time_of_loan,
-           :contact_of_loaner, :phone_of_loaner, :approver
-      row :appendix do 
-        unless iou.appendix.blank? then
-          link_to "#{iou.appendix_name}", "#{iou.appendix.url}" 
-        end
-      end
-    end
-
-    panel t 'formtastic.titles.iou_items' do 
-      table_for iou.iou_items, i18n: IouItem do
-        column :equipment_id do |item|
-          item.associated_equipment_name
-        end
-        column :equipment_part_id do |item|
-          item.associated_equipment_part_sn
-        end
-      end
-    end
-
-    active_admin_comments
-  end
-
   #form partial: 'form'
   form do |f|
     f.semantic_errors :base
@@ -120,6 +76,50 @@ ActiveAdmin.register Iou do
     f.actions 
   end
 
+  show do |iou|
+    attributes_table do
+      row  :distributor_id
+      row  :status do 
+      	I18n.t("iou.status.#{iou.status}")
+      end
+      rows :sales_name,:start_time_of_loan,:expected_end_time_of_loan,
+           :contact_of_loaner, :phone_of_loaner, :approver
+      row :appendix do 
+        unless iou.appendix.blank? then
+          link_to "#{iou.appendix_name}", "#{iou.appendix.url}" 
+        end
+      end
+    end
+
+    panel t 'formtastic.titles.iou_items' do 
+      table_for iou.iou_items, i18n: IouItem do
+        column :equipment_id do |item|
+          item.associated_equipment_name
+        end
+        column :equipment_part_id do |item|
+          item.associated_equipment_part_sn
+        end
+      end
+    end
+
+    active_admin_comments
+  end
+
+  index do
+    selectable_column
+    #id_column
+    column :distributor_id
+    column :start_time_of_loan
+    column :status do |iou|
+      I18n.t("iou.status.#{iou.status}")
+    end
+    column :contact
+    column :appendix do |iou|
+      iou.appendix.nil?? "":link_to("#{iou.appendix_name}","#{iou.appendix.url}")
+    end
+    actions 
+  end
+
   #filter :distributor_id, :as => :select, :collection => Distributor.all.map{|r| [r.name, r.id]}
   filter :distributor_id, :as => :select, :collection => Distributor.all.reject{|r| r.ious.empty?}.map{|r| [r.name, r.id]}
   filter :status, :as => :select, :collection => IOU_STATUS.map{|r| [I18n.t("iou.status.#{r}"),r]}
@@ -128,15 +128,6 @@ ActiveAdmin.register Iou do
 
   controller do
     before_filter :filter_duplicate_iou_item, :only => [:create, :update]
-
-    def destroy
-      @iou = Iou.find(permitted_params[:id])
-      destroy!  
-      if @iou.errors[:base].any?
-        flash[:error] ||= []
-        flash[:error].concat(@iou.errors[:base])
-      end          
-    end  
 
     def filter_duplicate_iou_item
       unless permitted_params[:iou][:iou_items_attributes].nil?
@@ -151,7 +142,16 @@ ActiveAdmin.register Iou do
           params[:iou][:iou_items_attributes] = Hash[*c]
         end 
       end
-    end  
+    end
+    
+    def destroy
+      @iou = Iou.find(permitted_params[:id])
+      destroy!  
+      if @iou.errors[:base].any?
+        flash[:error] ||= []
+        flash[:error].concat(@iou.errors[:base])
+      end          
+    end    
   end
 end
 

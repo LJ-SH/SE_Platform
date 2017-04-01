@@ -12,8 +12,13 @@
       equipment_parts: "库存信息"
       iou_items: "借用项目清单"
       company_profile_details: "公司概览" 
+      doc_items: "文件清单"
     placeholders:
       phone_format: "1开头的11位手机号，或者0xx(x)-xxxxxxx(x)-xxx的座机号"
       time_format: "xxxx(年)-xx(月)-xx(日)"
       equipment_part:
         sn_no: "以SN字母开头"
+      document:
+        name: "xxxx(年)_xx(月)_xx(日)-文档类型-客户名称-产品-版本号"
+      doc_item:
+        name: "xxxx(年)_xx(月)_xx(日)-文档类型-客户名称-产品-版本号"        

@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def i18n_helper(model_name,attr_name)
+    I18n.t("activerecord.attributes.#{model_name}.#{attr_name}")
+  end
+  
   def i18n_role_collection_helper(user_collection)
   	user_collection.map{|r| [I18n.t("admin_user.role.#{r}"),r]}
   end
@@ -14,7 +18,12 @@ module ApplicationHelper
   def i18n_company_status_collection_helper(company_status_collection)
   	company_status_collection.map{|r| [I18n.t("company_profile.status.#{r}"),r]}
   end
+
   def i18n_iou_status_collection_helper(iou_status_collection)
     iou_status_collection.map{|r| [I18n.t("iou.status.#{r}"),r]}  
+  end
+
+  def i18n_doc_type_collection_helper(doc_type_collection)
+    doc_type_collection.map {|r| [I18n.t("document.type.#{r}"),r]}
   end
 end

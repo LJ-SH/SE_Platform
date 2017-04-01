@@ -129,6 +129,8 @@ class Iou < ActiveRecord::Base
   def appendix_name
     self.appendix.blank?? "" : URI.decode(self.appendix.url.split("/").last.split("_UTC_").last)
   end 
+
+  scope :latest_active, ->(num) {where(:status => IOU_STATUS_ACTIVE).order('start_time_of_loan desc').limit(num)}
 end
 
   #def iou_items_attributes=(attributes)

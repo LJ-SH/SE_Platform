@@ -19,3 +19,5 @@ IOU_STATUS_CLCT_AT_SUBMITTED = IOU_STATUS[0..4]
 IOU_STATUS_CLCT_AT_ACTIVE = IOU_STATUS[2..3]
 IOU_POST_SUBMITTED_STATUS_CLCT = IOU_STATUS[2..5]
 IOU_CLOSE_STATUS_CLCT = IOU_STATUS[3..4]
+
+DOC_TYPE = ["RFP", "Training_Material", "Solution_Reference", "Certificate","Corporate_Doc","Industry_Report","Event_Presentation","Sales_Record","Other"]

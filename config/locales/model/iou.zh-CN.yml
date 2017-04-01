@@ -11,6 +11,7 @@
     messages:
       iou_equipment_parts_missing: 缺少借用设备信息
       iou_appendix_missing: 缺少借条附件
+      document_appendix_missing: 缺少文件附件
       iou_equipment_part_not_avail: "设备%{model} (序列号: %{sn_no}) 暂时不可用"
       empty_approver: 借用申请生效必须填写批准人信息
       #destroy_fails_if_active: "%{distributor}借用申请生效中，不允许删除"
